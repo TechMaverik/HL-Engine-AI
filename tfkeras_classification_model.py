@@ -4,8 +4,20 @@ import numpy as np
 import tensorflow.keras
 from PIL import Image
 
+"""
+USAGE
 
-class HLEngineTensorKerasModelRun:
+class_names=["class1",........]
+modelpath = "ai_models/keras_model.h5"
+payload = "test_dataset_folder"
+video_source = "sample.mp4"
+HLEngineTFClassModel(class_names=class_names, model_path=modelpath).launch_classification(payload, True) # For Image
+HLEngineTFClassModel(class_names=class_names, model_path=modelpath).launch_classification(video_source, False, True)
+
+"""
+
+
+class HLEngineTFClassModel:
 
     def __init__(self, class_names: list, model_path: str):
         self.model = tensorflow.keras.models.load_model(model_path, compile=False)
@@ -106,20 +118,3 @@ class HLEngineTensorKerasModelRun:
                 )
         else:
             self.run_classification_model_on_video(source)
-
-
-# class_names = class_names = [
-#     "Shashank",
-#     "Akhil",
-#     "Divya",
-#     "Unknown",
-# ]
-# modelpath = "ai_models/keras_model.h5"
-# payload = "test_dataset"
-# HLEngineTensorModelRun(
-#     class_names=class_names, model_path=modelpath
-# ).launch_classification(payload, True)
-# video_source = "Aayiram Kannumayi - Made with Clipchamp.mp4"
-# HLEngineTensorKerasModelRun(
-#     class_names=class_names, model_path=modelpath
-# ).launch_classification(video_source, False, True)
